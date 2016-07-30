@@ -37,6 +37,7 @@ module.exports = function(grunt) {
         '<%= config.app %>/scripts/controller/scene-controller.js',
         '<%= config.app %>/scripts/scene/main-menu-scene.js',
         '<%= config.app %>/scripts/scene/game-scene.js',
+        '<%= config.app %>/scripts/scene/map-scene.js',
         '<%= config.app %>/scripts/outro.js'
     ];
 

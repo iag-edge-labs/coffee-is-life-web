@@ -12,5 +12,5 @@ PixiGame.GameScene.prototype.setup = function() {}
 PixiGame.GameScene.prototype.update = function() {}
 
 PixiGame.GameScene.prototype.destroy = function() {
-	this.removeChildren();
+    this.removeChildren();
 }

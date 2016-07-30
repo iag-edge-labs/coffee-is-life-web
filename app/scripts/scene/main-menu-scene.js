@@ -1,6 +1,6 @@
 PixiGame.MainMenuScene = function() {
     PIXI.Graphics.call(this);
-    
+
     this._playButton = null;
     this.setup();
 };
@@ -18,13 +18,14 @@ PixiGame.MainMenuScene.prototype.setup = function() {
     this.addChild(this._playButton);
 }
 
-PixiGame.MainMenuScene.prototype.handlePlayButtonPressed = function(event){
-	PixiGame.sceneController.requestSceneChange(PixiGame.GameScene);
+PixiGame.MainMenuScene.prototype.handlePlayButtonPressed = function(event) {
+    //PixiGame.sceneController.requestSceneChange(PixiGame.GameScene);
+    PixiGame.sceneController.requestSceneChange(PixiGame.MapScene);
 }
 
 PixiGame.MainMenuScene.prototype.update = function() {}
 
 PixiGame.MainMenuScene.prototype.destroy = function() {
-	this.removeChildren();
-	this._playButton = null;
+    this.removeChildren();
+    this._playButton = null;
 }
