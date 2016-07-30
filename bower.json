@@ -1,0 +1,21 @@
+{
+  "name": "coffeeislife",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Tom Lingham <tjlingham@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/iag-edge-labs/coffee-is-life-web",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "pixi.js": "pixi#^3.0.11"
+  }
+}

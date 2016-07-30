@@ -1,5 +1,11 @@
-import { Sprite } from 'pixi'
+function ZombieEnemy() {
+  const textureArr = [];
 
-export default function ZombieEnemy() {
-  return new Sprite.fromImage('/images/encounter/zombie-enemy-1.png');
+  for (let i = 0; i < 5; i ++) {
+    textureArr.push(PIXI.Texture.fromImage('/images/encounter/zombie_punk_sprite0' + (i + 1) + '.png'));
+  }
+
+  return new PIXI.extras.MovieClip(textureArr);
 }
+
+export default ZombieEnemy

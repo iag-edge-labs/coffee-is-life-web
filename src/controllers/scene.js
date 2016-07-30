@@ -1,26 +1,26 @@
 import { Stage } from '../render'
 
-function SceneController (Scene) {
+export default class SceneController {
 
-  this._currentScene = new Scene();
-  this._previousScene = null;
+  constructor(Scene) {
+    this._currentScene = new Scene();
+    this._previousScene = null;
 
-  Stage.addChild(this._currentScene);
-}
-
-SceneController.prototype.update = function() {
-  this._currentScene.update();
-}
-
-SceneController.prototype.requestSceneChange = function(Scene) {
-  if (this._currentScene !== null) {
-    this._previousScene = this._currentScene;
-    this._previousScene.destroy();
-    Stage.removeChild(this._previousScene);
+    Stage.addChild(this._currentScene);
   }
 
-  this._currentScene = new Scene();
-  Stage.addChild(this._currentScene);
-}
+  update(){
+    this._currentScene.update();
+  }
 
-export default SceneController;
+  requestSceneChange(Scene){
+    if (this._currentScene !== null) {
+      this._previousScene = this._currentScene;
+      this._previousScene.destroy();
+      Stage.removeChild(this._previousScene);
+    }
+
+    this._currentScene = new Scene();
+    Stage.addChild(this._currentScene);
+  }
+}

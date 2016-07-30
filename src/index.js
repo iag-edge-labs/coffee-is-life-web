@@ -1,9 +1,8 @@
-import PIXI from 'pixi'
-import { Renderer } from './render'
-import GameLoopController from './controllers/game-loop'
+import { Renderer } from './render';
+import GameLoopController from './controllers/game-loop';
 
-Renderer.view.setAttribute('class', 'renderer')
-document.body.appendChild(Renderer.view)
+Renderer.view.setAttribute('class', 'renderer');
+document.body.appendChild(Renderer.view);
 
 const game = new GameLoopController();
 

@@ -1,13 +1,7 @@
-import {
-  Graphics,
-  Sprite,
-  Point
-} from 'pixi'
-
 import { Scene } from '../render'
-import EncounterScene from './encounter-scene'
+//import EncounterScene from './encounter-scene'
 
-export default class MainMenuScene extends Graphics {
+export default class MainMenuScene extends PIXI.Graphics {
 
   constructor() {
     super();
@@ -16,8 +10,8 @@ export default class MainMenuScene extends Graphics {
   }
 
   setup() {
-    this._playButton = new Sprite.fromImage('images/game/play-game-btn.png');
-    this._playButton.anchor = new Point(0.5, 0.5);
+    this._playButton = new PIXI.Sprite.fromImage('images/game/play-game-btn.png');
+    this._playButton.anchor = new PIXI.Point(0.5, 0.5);
     this._playButton.position.x = 320;
     this._playButton.position.y = 480;
     this._playButton.interactive = true;
@@ -28,7 +22,7 @@ export default class MainMenuScene extends Graphics {
   update() {}
 
   handlePlayButtonPressed(event) {
-    Scene.requestSceneChange(EncounterScene);
+    //Scene.requestSceneChange(EncounterScene);
   }
 
   destroy() {

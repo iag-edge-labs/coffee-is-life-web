@@ -1,6 +1,5 @@
-import PIXI from 'pixi'
-import ZombieEnemy, { animations as zombieAnimations }  from './encounter/ZombieEnemy'
-import Weapon, { animations as weaponAnimations } from './encounter/Weapon'
+import ZombieEnemy  from './encounter/ZombieEnemy'
+import Weapon from './encounter/Weapon'
 
 export default class EncounterScene extends PIXI.Graphics {
 
