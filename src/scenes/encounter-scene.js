@@ -1,41 +1,43 @@
 import PIXI from 'pixi'
+import ZombieEnemy, { animations as zombieAnimations }  from './encounter/ZombieEnemy'
+import Weapon, { animations as weaponAnimations } from './encounter/Weapon'
 
-function EncounterScene() {
+export default class EncounterScene extends PIXI.Graphics {
+
+  constructor() {
+    super();
+
     PIXI.Graphics.call(this);
     this.setup();
-};
 
-EncounterScene.prototype = Object.create(PIXI.Graphics.prototype);
+    this.state = {
+      weapon: {
+        moveDir: 1,
+        moveSpeed: 0.8,
+        isIdle: true,
+        isFiring: false
+      },
+      enemy: {
+        moveDir: 1,
+        moveSpeed: 3.1,
+      },
+    }
+  }
 
-var EncounterState = {
-  weapon: {
-    moveDir: 1,
-    moveSpeed: 0.8,
-    isIdle: true,
-    isFiring: false
-  },
-  enemy: {
-    moveDir: 1,
-    moveSpeed: 3.1,
-  },
+  setup() {
+    this._enemy = ZombieEnemy();
+    this._weapon = Weapon();
+
+    this.addChild(this._enemy);
+    this.addChild(this._weapon);
+  }
+
+  update() {
+
+  }
+
+  destroy() {
+    this.removeChild(this._enemy);
+    this.removeChild(this._weapon);
+  }
 }
-
-EncounterScene.prototype.setup = function() {
-  this._enemy = EncounterSprite.Zombie();
-  this._weapon = EncounterSprite.Weapon();
-
-  this.addChild(this._enemy);
-  this.addChild(this._weapon);
-}
-
-EncounterScene.prototype.update = function() {
-  EncounterMethods.fireWeapon(this._weapon);
-  EncounterMethods.idleWeapon(this._weapon);
-  EncounterMethods.enemyMovement(this._enemy);
-};
-
-EncounterScene.prototype.destroy = function() {
-    this.removeChildren();
-}
-
-export default EncounterScene;

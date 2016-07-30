@@ -20,7 +20,7 @@ SceneController.prototype.requestSceneChange = function(Scene) {
   }
 
   this._currentScene = new Scene();
-  PixiGame.stage.addChild(this._currentScene);
+  Stage.addChild(this._currentScene);
 }
 
 export default SceneController;

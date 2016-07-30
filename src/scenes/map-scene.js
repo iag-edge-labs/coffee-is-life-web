@@ -1,22 +1,22 @@
-PixiGame.MapScene = function() {
+MapScene = function() {
     PIXI.Graphics.call(this);
 
     this.setup();
 };
 
-PixiGame.MapScene.constructor = PixiGame.GameScene;
-PixiGame.MapScene.prototype = Object.create(PIXI.Graphics.prototype);
+MapScene.constructor = GameScene;
+MapScene.prototype = Object.create(PIXI.Graphics.prototype);
 
-PixiGame.MapScene.prototype.setup = function() {
+MapScene.prototype.setup = function() {
 }
 
-PixiGame.MapScene.prototype.update = function() {
+MapScene.prototype.update = function() {
 
   this._shape = new PIXI.Graphics();
   this._shape.beginFill(0xffffff);
   this._shape.drawPolygon([
     1,1,
-    200,200,   
+    200,200,
     30,300
   ])
 
@@ -27,6 +27,8 @@ PixiGame.MapScene.prototype.update = function() {
 
 }
 
-PixiGame.MapScene.prototype.destroy = function() {
+MapScene.prototype.destroy = function() {
     this.removeChildren();
 }
+
+export default MapScene;
