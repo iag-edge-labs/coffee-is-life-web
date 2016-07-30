@@ -1,21 +1,21 @@
-PixiGame.GameLoopController = function() {
+import { Renderer, Scene, Stage } from '../render'
+
+function GameLoopController() {
     this._isGameActive = false;
     this._fps = 60;
     this._updateInterval = null;
 }
 
-PixiGame.GameLoopController.constructor = PixiGame.GameLoopController;
-
-PixiGame.GameLoopController.prototype.update = function() {
+GameLoopController.prototype.update = function() {
     if (!this._isGameActive) {
         return;
     }
 
-    PixiGame.renderer.render(PixiGame.stage);
-    PixiGame.sceneController.update();
+    Renderer.render(Stage);
+    Scene.update();
 }
 
-PixiGame.GameLoopController.prototype.start = function() {
+GameLoopController.prototype.start = function() {
     if (this._isGameActive) {
         return;
     }
@@ -28,7 +28,7 @@ PixiGame.GameLoopController.prototype.start = function() {
     }.bind(this), 1000 / this._fps);
 };
 
-PixiGame.GameLoopController.prototype.pause = function() {
+GameLoopController.prototype.pause = function() {
     if (!this._isGameActive) {
         return;
     }
@@ -37,8 +37,10 @@ PixiGame.GameLoopController.prototype.pause = function() {
     this._isGameActive = false;
 };
 
-Object.defineProperty(PixiGame.GameLoopController.prototype, 'isPaused', {
+Object.defineProperty(GameLoopController.prototype, 'isPaused', {
     get: function() {
         return !this._isGameActive;
     },
 });
+
+export default GameLoopController;
