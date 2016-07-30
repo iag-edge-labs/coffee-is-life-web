@@ -5,8 +5,6 @@ export default class EncounterScene extends PIXI.Graphics {
 
   constructor() {
     super();
-
-    PIXI.Graphics.call(this);
     this.setup();
 
     this.state = {
@@ -24,15 +22,16 @@ export default class EncounterScene extends PIXI.Graphics {
   }
 
   setup() {
-    this._enemy = ZombieEnemy();
-    this._weapon = Weapon();
+    this._enemy = new ZombieEnemy();
+    this._weapon = new Weapon();
 
-    this.addChild(this._enemy);
-    this.addChild(this._weapon);
+    this.addChild(this._enemy.obj);
+    this.addChild(this._weapon.obj);
   }
 
   update() {
-
+    this._weapon.update();
+    this._enemy.update();
   }
 
   destroy() {

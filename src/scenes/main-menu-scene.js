@@ -1,5 +1,5 @@
 import { Scene } from '../render'
-//import EncounterScene from './encounter-scene'
+import EncounterScene from './encounter-scene'
 
 export default class MainMenuScene extends PIXI.Graphics {
 
@@ -12,8 +12,8 @@ export default class MainMenuScene extends PIXI.Graphics {
   setup() {
     this._playButton = new PIXI.Sprite.fromImage('images/game/play-game-btn.png');
     this._playButton.anchor = new PIXI.Point(0.5, 0.5);
-    this._playButton.position.x = 320;
-    this._playButton.position.y = 480;
+    this._playButton.position.x = 540;
+    this._playButton.position.y = 960;
     this._playButton.interactive = true;
     this._playButton.touchstart = this._playButton.mousedown = this.handlePlayButtonPressed.bind(this);
     this.addChild(this._playButton);
@@ -22,7 +22,7 @@ export default class MainMenuScene extends PIXI.Graphics {
   update() {}
 
   handlePlayButtonPressed(event) {
-    //Scene.requestSceneChange(EncounterScene);
+    Scene.requestSceneChange(EncounterScene);
   }
 
   destroy() {
