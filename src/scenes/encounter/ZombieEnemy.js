@@ -1,4 +1,5 @@
 import { TimelineLite } from 'gsap'
+import { hitPlayer } from '../../state'
 
 export default class ZombieEnemy {
   constructor() {
@@ -39,6 +40,21 @@ export default class ZombieEnemy {
 
     const tl = new TimelineLite();
     this.randomTween(tl);
+
+    this.queueAttack(tl);
+  }
+
+  queueAttack(tl) {
+    setTimeout(() => {
+      this.attackPlayer(tl);
+      this.queueAttack(tl);
+    }, 3000)
+  }
+
+  attackPlayer(tl) {
+    tl.kill();
+    tl.to(this.obj, 0.2, { y: 990 })
+    .to(this.obj, 0.2, { y: 900 })
   }
 
   update() {
