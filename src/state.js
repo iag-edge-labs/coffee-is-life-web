@@ -6,6 +6,7 @@ export playerHit = () => playerHealth = playerHealth - 10;
 export zombieHit = () => playerHealth = playerHealth - 10;
 export zombieDefeated = () => playerBeans = playerBeans + 1;
 export getPlayerHealth = () => playerHealth;
+export getZombieHealth = () => playerHealth;
 export getPlayerBeans = () => playerBeans;
 export startEncounter = () => zombieHealth = 100;
 
