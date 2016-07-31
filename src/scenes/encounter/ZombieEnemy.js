@@ -23,9 +23,7 @@ export default class ZombieEnemy {
 
   getRandomZombie(types) {
     const zombieTypes = Object.keys(types)
-    //return zombieTypes[Math.floor(Math.random() * zombieTypes.length)]
-    return 'hens'
-
+    return zombieTypes[Math.floor(Math.random() * zombieTypes.length)]
   }
 
   setup() {
