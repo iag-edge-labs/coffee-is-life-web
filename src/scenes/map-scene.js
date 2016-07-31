@@ -3,7 +3,8 @@ import { Scene } from '../render'
 
 export default class MapScene extends PIXI.Graphics {
   constructor () {
-    super(); 
+    super();
+    this.addMap();
     this.addBorder();
     setTimeout(this.startEncounter.bind(this), 1000);
   }
@@ -15,13 +16,17 @@ export default class MapScene extends PIXI.Graphics {
     this.addChild(border);
   }
 
+  addMap () {
+    const border = new PIXI.Sprite.fromImage('images/game/map-screen.png');
+    border.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
+    this.addChild(border);
+  }
+
   update () {
-    
+
   }
 
   startEncounter () {
     Scene.requestSceneChange(EncounterScene);
   }
 }
-
-

@@ -47,7 +47,7 @@ export default class LifeBar {
     container.addChild(healthbar);
     container.addChild(healthbar_Zombie_icon);
     container.addChild(healthbar_Zombie);
-/*
+    /*
     const currentPlayerHealth = getPlayerHealth();
     const currentZombieHealth = getZombieHealth();
 
@@ -58,60 +58,43 @@ export default class LifeBar {
     const rect = graphics.drawRect(670 - howManyRect, 0, 50 + howManyRect , 50);
     graphics.endFill();
     if (this.currentValue < 100) {
-      container.addChild(rect);
-    } else {
-      container.removeChild(rect);
-    }
-
-    //draw rect for healthbar_Zombie
-    const howManyRect_Zombie = 670 - ( 670 * ( currentZombieHealth/ 100));
-    graphics.beginFill(0x000000);
-    const rect_Zombie = graphics.drawRect(670 - howManyRect_Zombie, 0, 50 + howManyRect_Zombie , 50);
-    graphics.endFill();
-    if (this.currentValue < 100) {
-      container.addChild(rect_Zombie);
-    } else {
-      container.removeChild(rect_Zombie);
-    }
-*/
-
-    this.obj = container;
-  }
-
-
-  update () {
-    //log
-console.log(getZombieHealth())
-console.log(getPlayerHealth())
-/*
-//draw rect for healthbar_you
-const howManyRect = 670 - ( 670 * ( currentPlayerHealth/ 100));
-graphics.beginFill(0x000000);
-const rect = graphics.drawRect(670 - howManyRect, 0, 50 + howManyRect , 50);
-graphics.endFill();
-if (this.currentValue < 100) {
-  container.addChild(rect);
-} else {
+    container.addChild(rect);
+  } else {
   container.removeChild(rect);
 }
-*/
-//currentPlayerHealth = getPlayerHealth();
- //currentZombieHealth = getZombieHealth();
- const graphics = new PIXI.Graphics();
-//const   container = new PIXI.Container();
+
 //draw rect for healthbar_Zombie
-const howManyRect_Zombie = 620 - ( 620 * ( getZombieHealth()/ 100));
+const howManyRect_Zombie = 670 - ( 670 * ( currentZombieHealth/ 100));
 graphics.beginFill(0x000000);
-const rect_Zombie = graphics.drawRect(620 - howManyRect_Zombie, 70, 50 + howManyRect_Zombie , 50);
+const rect_Zombie = graphics.drawRect(670 - howManyRect_Zombie, 0, 50 + howManyRect_Zombie , 50);
 graphics.endFill();
-if (getZombieHealth() < 100) {
-if (getZombieHealth() > 0) {
-  this._container.addChild(rect_Zombie);
+if (this.currentValue < 100) {
+container.addChild(rect_Zombie);
+} else {
+container.removeChild(rect_Zombie);
 }
+*/
+
+this.obj = container;
 }
 
-};
-  setValue (value) {
-    this.currentValue = value;
+
+update () {
+  console.log('zombie:', getZombieHealth())
+  console.log('player:', getPlayerHealth())
+  const graphics = new PIXI.Graphics();
+  const howManyRect_Zombie = 620 - ( 620 * ( getZombieHealth()/ 100));
+  graphics.beginFill(0x000000);
+  const rect_Zombie = graphics.drawRect(620 - howManyRect_Zombie, 70, 50 + howManyRect_Zombie , 50);
+  graphics.endFill();
+  if (getZombieHealth() < 100) {
+    if (getZombieHealth() > 0) {
+      this._container.addChild(rect_Zombie);
+    }
   }
+
+};
+setValue (value) {
+  this.currentValue = value;
+}
 }

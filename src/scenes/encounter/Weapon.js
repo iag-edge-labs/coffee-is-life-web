@@ -1,5 +1,5 @@
 import { TimelineLite } from 'gsap'
-import { zombieHit, getPlayerHealth, getZombieHealth } from '../../state'
+import { zombieHit, getPlayerHealth, getZombieHealth, playerHit } from '../../state'
 
 export default class Weapon {
 
