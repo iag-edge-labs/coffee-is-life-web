@@ -1,6 +1,7 @@
 import ZombieEnemy  from './encounter/ZombieEnemy'
 import Weapon from './encounter/Weapon'
 import LifeBar from './encounter/LifeBar'
+import { getPlayerHealth, getZombieHealth } from '../../../state'
 
 export default class EncounterScene extends PIXI.Graphics {
 
@@ -20,6 +21,9 @@ export default class EncounterScene extends PIXI.Graphics {
         moveSpeed: 3.1,
       },
     }
+
+    this._zombieLifeBar = new LifeBar();
+    this._playerLifeBar = new LifeBar();
   }
 
   setup() {
@@ -37,6 +41,11 @@ export default class EncounterScene extends PIXI.Graphics {
     this._weapon.update();
     this._enemy.update();
     this._lifeBar.update();
+
+    this._playerLifeBar.setValue(getPlayerHealth())
+    this._zombieLifeBar.setValue(getZombieHealth())
+    this._playerLifeBar.update();
+    this._zombieLifeBar.update();
   }
 
   destroy() {
