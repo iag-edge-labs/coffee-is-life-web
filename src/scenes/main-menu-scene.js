@@ -1,5 +1,6 @@
 import { Scene } from '../render'
-import EncounterScene from './encounter-scene'
+//import EncounterScene from './encounter-scene'
+import MapScene from './map-scene'
 
 export default class MainMenuScene extends PIXI.Graphics {
 
@@ -22,8 +23,10 @@ export default class MainMenuScene extends PIXI.Graphics {
   update() {}
 
   handlePlayButtonPressed(event) {
-    Scene.requestSceneChange(EncounterScene);
+    //Scene.requestSceneChange(EncounterScene);
+    Scene.requestSceneChange(MapScene);
   }
+
 
   destroy() {
     this.removeChild(this._playButton);

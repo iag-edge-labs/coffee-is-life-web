@@ -1,34 +1,27 @@
-MapScene = function() {
-    PIXI.Graphics.call(this);
+import EncounterScene from './encounter-scene'
+import { Scene } from '../render'
 
-    this.setup();
-};
+export default class MapScene extends PIXI.Graphics {
+  constructor () {
+    super(); 
+    this.addBorder();
+    setTimeout(this.startEncounter.bind(this), 5000);
+  }
 
-MapScene.constructor = GameScene;
-MapScene.prototype = Object.create(PIXI.Graphics.prototype);
+  addBorder () {
+    const border = new PIXI.Sprite.fromImage('images/game/screenborder.png');
+    border.scale = new PIXI.Point(10, 10);
+    border.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
+    this.addChild(border);
+  }
 
-MapScene.prototype.setup = function() {
+  update () {
+    
+  }
+
+  startEncounter () {
+    Scene.requestSceneChange(EncounterScene);
+  }
 }
 
-MapScene.prototype.update = function() {
 
-  this._shape = new PIXI.Graphics();
-  this._shape.beginFill(0xffffff);
-  this._shape.drawPolygon([
-    1,1,
-    200,200,
-    30,300
-  ])
-
-  this._shape.endFill();
-  this._shape.position.y = 20;
-  this._shape.position.x = 20;
-  this.addChild(this._shape);
-
-}
-
-MapScene.prototype.destroy = function() {
-    this.removeChildren();
-}
-
-export default MapScene;
