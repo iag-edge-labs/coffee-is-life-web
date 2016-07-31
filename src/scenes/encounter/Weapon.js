@@ -23,7 +23,7 @@ export default class Weapon {
     weapon.y = 1790
     weapon.scale = { x: 7, y: 7 }
     weapon.interactive = true
-    weapon.on('click', this.fireWeapon.bind(this))
+    weapon.on('tap',  this.fireWeapon.bind(this))
 
     this._weapon = weapon
     this.obj.addChild(weapon)
