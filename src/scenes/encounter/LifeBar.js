@@ -5,6 +5,8 @@ export default class LifeBar {
   constructor () {
     //  const currentPlayerHealth = getPlayerHealth();
     const container = new PIXI.Container();
+
+    this._container = container;
     const graphics = new PIXI.Graphics();
     //draw healthbar
     const healthbar = new PIXI.Sprite.fromImage('/images/game/healthbar.png');
@@ -25,28 +27,30 @@ export default class LifeBar {
     healthbar_you.y = 0;
     healthbar_you.scale = { x: 8, y: 8 }
     //draw ZombieIcon
-    //const healthbar_Zombie_icon = new PIXI.Sprite.fromImage('/images/game/healthicon_Zombie.png');
-    //healthbar_Zombie_icon.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
+    const healthbar_Zombie_icon = new PIXI.Sprite.fromImage('/images/game/healthicon_zombie.png');
+    healthbar_Zombie_icon.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
 
-    //healthbar_Zombie_icon.x = 5;
-    //healthbar_Zombie_icon.y = 30;
-    //healthbar_Zombie_icon.scale = { x: 8, y: 8 }
+    healthbar_Zombie_icon.x = 5;
+    healthbar_Zombie_icon.y = 70;
+    healthbar_Zombie_icon.scale = { x: 8, y: 8 }
     //draw healthbar
     const healthbar_Zombie = new PIXI.Sprite.fromImage('/images/game/healthbar.png');
     healthbar_Zombie.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
 
     healthbar_Zombie.x = 80;
-    healthbar_Zombie.y = 30;
-    //healthbar_Zombie.width = healthbar_Zombie.width + (1000 * healthbar_Zombie.maxWidth);
+    healthbar_Zombie.y = 70;
+    //healthbar_Zombie.width = healthbar_Zombie.width + (1000 * healthbar_Zombie.maxWi  dth);
     healthbar_Zombie.scale = { x: 8, y: 8 }
     healthbar_Zombie.interactive = true;
 
     container.addChild(healthbar_you);
     container.addChild(healthbar);
-    //container.addChild(healthbar_Zombie_icon);
-    //container.addChild(healthbar_Zombie);
+    container.addChild(healthbar_Zombie_icon);
+    container.addChild(healthbar_Zombie);
+/*
     const currentPlayerHealth = getPlayerHealth();
     const currentZombieHealth = getZombieHealth();
+
 
     //draw rect for healthbar_you
     const howManyRect = 670 - ( 670 * ( currentPlayerHealth/ 100));
@@ -69,16 +73,44 @@ export default class LifeBar {
     } else {
       container.removeChild(rect_Zombie);
     }
-
+*/
 
     this.obj = container;
   }
 
 
   update () {
+    //log
+console.log(getZombieHealth())
+console.log(getPlayerHealth())
+/*
+//draw rect for healthbar_you
+const howManyRect = 670 - ( 670 * ( currentPlayerHealth/ 100));
+graphics.beginFill(0x000000);
+const rect = graphics.drawRect(670 - howManyRect, 0, 50 + howManyRect , 50);
+graphics.endFill();
+if (this.currentValue < 100) {
+  container.addChild(rect);
+} else {
+  container.removeChild(rect);
+}
+*/
+//currentPlayerHealth = getPlayerHealth();
+ //currentZombieHealth = getZombieHealth();
+ const graphics = new PIXI.Graphics();
+//const   container = new PIXI.Container();
+//draw rect for healthbar_Zombie
+const howManyRect_Zombie = 620 - ( 620 * ( getZombieHealth()/ 100));
+graphics.beginFill(0x000000);
+const rect_Zombie = graphics.drawRect(620 - howManyRect_Zombie, 70, 50 + howManyRect_Zombie , 50);
+graphics.endFill();
+if (getZombieHealth() < 100) {
+if (getZombieHealth() > 0) {
+  this._container.addChild(rect_Zombie);
+}
+}
 
-  }
-
+};
   setValue (value) {
     this.currentValue = value;
   }
