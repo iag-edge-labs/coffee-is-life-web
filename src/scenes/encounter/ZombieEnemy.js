@@ -17,14 +17,11 @@ export default class ZombieEnemy {
     zombie.anchor = new PIXI.Point(0.5, 0.5);
     zombie.x = 540;
     zombie.y = 450;
-    zombie.scale = { x: 10, y: 10 };
-    zombie.animationSpeed = 0.1;
+    zombie.scale = { x: 20, y: 20 };
+    zombie.animationSpeed = 0.3;
     zombie.play();
 
-    const container = new PIXI.Container();
-    container.addChild(zombie)
-
-    this.obj = container;
+    this.obj = zombie;
 
     const tl = new TimelineLite();
     this.randomTween(tl);
@@ -37,7 +34,7 @@ export default class ZombieEnemy {
   randomTween(tl) {
     setTimeout(() => {
       tl.to(this.obj, 0.8, {
-        x: Math.random() * 500 + 290,
+        x: Math.random() * 500,
         onComplete: () => this.randomTween(tl)
       })
     }, Math.random() * 1000);
