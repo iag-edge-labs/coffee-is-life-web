@@ -1,6 +1,9 @@
+import { Scene } from '../render'
 import ZombieEnemy  from './encounter/ZombieEnemy'
 import Weapon from './encounter/Weapon'
 import LifeBar from './encounter/LifeBar'
+import { getZombieHealth, startEncounter } from '../state'
+import MapScene from './map-scene'
 
 export default class EncounterScene extends PIXI.Graphics {
 
@@ -39,7 +42,10 @@ export default class EncounterScene extends PIXI.Graphics {
   setup() {
     this._enemy = new ZombieEnemy();
     this._weapon = new Weapon();
+    this._weapon.addEnemy(this._enemy.obj)
     this._lifeBar = new LifeBar();
+    startEncounter()
+    this._done = false
 
     this.addBg();
     this.addChild(this._enemy.obj);
@@ -52,6 +58,10 @@ export default class EncounterScene extends PIXI.Graphics {
     this._weapon.update();
     this._enemy.update();
     this._lifeBar.update();
+
+    if (getZombieHealth() <= 0 && !this._done) {
+      setTimeout(() => Scene.requestSceneChange(MapScene), 2000)
+    }
   }
 
   destroy() {
