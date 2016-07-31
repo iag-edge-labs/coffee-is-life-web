@@ -1,4 +1,5 @@
 import { TimelineLite } from 'gsap'
+import { zombieHit, getPlayerHealth } from '../../state'
 
 export default class Weapon {
 
@@ -26,6 +27,8 @@ export default class Weapon {
 
   fireWeapon() {
     if (!this.state.isFiring) {
+      zombieHit()
+      console.log(getPlayerHealth())
       this.state.isFiring = true
       this.obj.gotoAndStop(1)
 
