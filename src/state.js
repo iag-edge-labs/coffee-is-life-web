@@ -8,4 +8,3 @@ export zombieDefeated = () => playerBeans = playerBeans + 1;
 export getPlayerHealth = () => playerHealth;
 export getPlayerBeans = () => playerBeans;
 export startEncounter = () => zombieHealth = 100;
-
