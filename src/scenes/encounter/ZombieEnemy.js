@@ -34,9 +34,9 @@ export default class ZombieEnemy {
   randomTween(tl) {
     setTimeout(() => {
       tl.to(this.obj, 0.8, {
-        x: Math.random() * 500,
+        x: Math.random() * 500 + 270,
         onComplete: () => this.randomTween(tl)
       })
-    }, Math.random() * 1000);
+    }, Math.random() * 200);
   }
 }
