@@ -1,5 +1,5 @@
 import { Scene } from '../render'
-//import EncounterScene from './encounter-scene'
+import EncounterScene from './encounter-scene'
 import MapScene from './map-scene'
 import ChooseScene from './choose-scene'
 

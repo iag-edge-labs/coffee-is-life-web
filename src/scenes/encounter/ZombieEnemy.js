@@ -30,7 +30,7 @@ export default class ZombieEnemy {
     const zombie = new PIXI.extras.MovieClip(this.generateTextures(type, this.types[type]));
     zombie.anchor = new PIXI.Point(0.5, 0.5);
     zombie.x = 540;
-    zombie.y = 650;
+    zombie.y = 900;
     zombie.scale = { x: 12, y: 12 };
     zombie.animationSpeed = 0.15;
     zombie.play();
@@ -46,9 +46,10 @@ export default class ZombieEnemy {
   }
 
   randomTween(tl) {
+    const range = 800
     setTimeout(() => {
-      tl.to(this.obj, 0.8, {
-        x: Math.random() * 500 + 270,
+      tl.to(this.obj, 0.4, {
+        x: (540 + range / 2) - Math.random() * range,
         onComplete: () => this.randomTween(tl)
       })
     }, Math.random() * 200);
