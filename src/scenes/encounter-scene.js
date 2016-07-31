@@ -63,7 +63,7 @@ export default class EncounterScene extends PIXI.Graphics {
     this._lifeBar.update();
 
     if (getZombieHealth() <= 0 && !this._done) {
-      setTimeout(() => Scene.requestSceneChange(MapScene), 2000)
+      Scene.requestSceneChange(MapScene)
     }
   }
 
