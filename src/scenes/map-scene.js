@@ -5,7 +5,7 @@ export default class MapScene extends PIXI.Graphics {
   constructor () {
     super(); 
     this.addBorder();
-    setTimeout(this.startEncounter.bind(this), 5000);
+    setTimeout(this.startEncounter.bind(this), 1000);
   }
 
   addBorder () {

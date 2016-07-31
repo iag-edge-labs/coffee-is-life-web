@@ -23,6 +23,7 @@ export default class EncounterScene extends PIXI.Graphics {
         moveSpeed: 3.1,
       },
     }
+
   }
 
   addBorder () {
@@ -46,12 +47,14 @@ export default class EncounterScene extends PIXI.Graphics {
     this._lifeBar = new LifeBar();
     startEncounter()
     this._done = false
+    this._lifeBar.obj.x = 200;
+    this._lifeBar.obj.y = 100;
 
     this.addBg();
     this.addChild(this._enemy.obj);
     this.addChild(this._weapon.obj);
-    this.addChild(this._lifeBar.obj);
     this.addBorder();
+    this.addChild(this._lifeBar.obj);
   }
 
   update() {
@@ -67,6 +70,5 @@ export default class EncounterScene extends PIXI.Graphics {
   destroy() {
     this.removeChild(this._enemy);
     this.removeChild(this._weapon);
-    this.removeChild(this._lifeBar);
   }
 }
