@@ -1,5 +1,5 @@
 import { TimelineLite } from 'gsap'
-import { zombieHit, getPlayerHealth } from '../../state'
+import { zombieHit, getPlayerHealth, getZombieHealth } from '../../state'
 
 export default class Weapon {
 
@@ -44,29 +44,34 @@ export default class Weapon {
     splash.animationSpeed = 0.4
     splash.play()
     splash.loop = false
-    splash.onComplete = () => {
-      this.obj.removeChild(splash)
-      console.log('don')
-    }
+    splash.onComplete = () => this.obj.removeChild(splash)
 
     this.obj.addChild(splash)
   }
 
-  fireWeapon() {
-    if (!this.state.isFiring) {
+  addEnemy(sprite) {
+    this._enemy = sprite
+  }
+
+  fireWeapon(zombie) {
+    if (!this.state.isFiring && getZombieHealth() > 0) {
       zombieHit()
+      this._enemy.tint = 0xff5555
       this.splash()
       this.state.isFiring = true
       this._weapon.gotoAndStop(1)
 
       const tl = new TimelineLite()
+      setTimeout(() => this._enemy.tint = 0xffffff, 200)
       setTimeout(() => this._weapon.gotoAndStop(0), 200)
       tl.to(this._weapon, 0.1, { y: 1750 })
-      .to(this._weapon, 0.5, { y: 1790, onComplete: () => this.state.isFiring = false });
+      .to(this._weapon, 0.5, { y: 1790, onComplete: () => {
+        this.state.isFiring = false
+      }});
     }
   }
 
-  update() {
+  update(zombie) {
 
   }
 }

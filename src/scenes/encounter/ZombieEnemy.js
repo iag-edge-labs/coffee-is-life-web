@@ -1,5 +1,5 @@
 import { TimelineLite } from 'gsap'
-import { hitPlayer } from '../../state'
+import { hitPlayer, getZombieHealth } from '../../state'
 
 export default class ZombieEnemy {
   constructor() {
@@ -52,9 +52,14 @@ export default class ZombieEnemy {
   }
 
   attackPlayer(tl) {
-    tl.kill();
-    tl.to(this.obj, 0.2, { y: 990 })
-    .to(this.obj, 0.2, { y: 900 })
+    if (getZombieHealth() > 0) {
+      tl.kill(null, this.obj);
+      tl.to(this.obj, 0.2, { y: 990 })
+      .to(this.obj, 0.2, {
+        y: 900,
+        onComplete: () => this.randomTween(tl)
+      })
+    }
   }
 
   update() {
