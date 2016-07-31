@@ -26,15 +26,30 @@ export default class EncounterScene extends PIXI.Graphics {
     this._playerLifeBar = new LifeBar();
   }
 
+  addBorder () {
+    const border = new PIXI.Sprite.fromImage('images/game/screenborder.png');
+    border.scale = new PIXI.Point(10, 10);
+    border.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
+    this.addChild(border);
+  }
+
+  addBg () {
+    const border = new PIXI.Sprite.fromImage('images/encounter/screen_encounterbg.png');
+    border.scale = new PIXI.Point(10, 10);
+    border.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
+    this.addChild(border);
+  }
+
   setup() {
     this._enemy = new ZombieEnemy();
     this._weapon = new Weapon();
     this._lifeBar = new LifeBar();
 
+    this.addBg();
     this.addChild(this._enemy.obj);
     this.addChild(this._weapon.obj);
-    console.log(this._lifeBar.obj);
     this.addChild(this._lifeBar.obj);
+    this.addBorder();
   }
 
   update() {

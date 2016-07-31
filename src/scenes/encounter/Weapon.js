@@ -1,4 +1,5 @@
 import { TimelineLite } from 'gsap'
+import { zombieHit, getPlayerHealth } from '../../state'
 
 export default class Weapon {
 
@@ -11,25 +12,57 @@ export default class Weapon {
   }
 
   setup() {
-    const weapon = new PIXI.Sprite.fromImage('/images/encounter/coffee.png');
-    weapon.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
-    weapon.anchor = new PIXI.Point(0.5, 0.5);
-    weapon.x = 540;
-    weapon.y = 1700;
-    weapon.scale = { x: 8, y: 8 }
-    weapon.interactive = true;
-    weapon.on('click', this.fireWeapon.bind(this));
-    this.obj = weapon;
+    const texArr = [new PIXI.Texture.fromImage('/images/encounter/yourcoffee.png'), new PIXI.Texture.fromImage('/images/encounter/yourcoffee_flicked.png')]
+    texArr.forEach(t => t.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST)
+
+    this.obj = new PIXI.Container();
+
+    const weapon = new PIXI.extras.MovieClip(texArr)
+    weapon.anchor = new PIXI.Point(0.5, 0.5)
+    weapon.x = 540
+    weapon.y = 1790
+    weapon.scale = { x: 7, y: 7 }
+    weapon.interactive = true
+    weapon.on('click', this.fireWeapon.bind(this))
+
+    this._weapon = weapon
+    this.obj.addChild(weapon)
+  }
+
+  splash() {
+    const texArr = [];
+    for(let i = 1; i <= 9; i ++) {
+      const texture = new PIXI.Texture.fromImage(`/images/encounter/coffeethrow_anim0${i}.png`)
+      texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST
+      texArr.push(texture)
+    }
+    const splash = new PIXI.extras.MovieClip(texArr)
+    splash.anchor = new PIXI.Point(0.5, 0.5)
+    splash.x = 555
+    splash.y = 1020
+    splash.scale = {x: 12, y: 12}
+    splash.animationSpeed = 0.4
+    splash.play()
+    splash.loop = false
+    splash.onComplete = () => {
+      this.obj.removeChild(splash)
+      console.log('don')
+    }
+
+    this.obj.addChild(splash)
   }
 
   fireWeapon() {
     if (!this.state.isFiring) {
+      zombieHit()
+      this.splash()
       this.state.isFiring = true
+      this._weapon.gotoAndStop(1)
 
       const tl = new TimelineLite()
-
-      tl.to(this.obj, 0.1, { y: 1940 })
-      .to(this.obj, 1, { y: 1700, onComplete: () => this.state.isFiring = false });
+      setTimeout(() => this._weapon.gotoAndStop(0), 200)
+      tl.to(this._weapon, 0.1, { y: 1750 })
+      .to(this._weapon, 0.5, { y: 1790, onComplete: () => this.state.isFiring = false });
     }
   }
 
